@@ -40,6 +40,24 @@ const ContactForm = () => {
       setIsLoading(true);
       // Simulating a high-standard system delay (2.5 seconds)
       setTimeout(() => {
+        
+        // --- NEW FEATURE: Hex Softwares Local Storage Database ---
+        // 1. Format the new record with a unique ID and timestamp
+        const newRecord = {
+          ...formData,
+          id: Date.now(),
+          date: new Date().toLocaleString(),
+          status: 'Pending Review'
+        };
+        
+        // 2. Retrieve existing data (or create an empty array)
+        const existingClients = JSON.parse(localStorage.getItem('kanchalu_client_database')) || [];
+        
+        // 3. Add the new record and save it back to the browser
+        existingClients.push(newRecord);
+        localStorage.setItem('kanchalu_client_database', JSON.stringify(existingClients));
+        // ---------------------------------------------------------
+
         setIsLoading(false);
         setIsSubmitted(true);
       }, 2500);

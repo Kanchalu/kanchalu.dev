@@ -1,11 +1,12 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion'; 
 import Button from '../ui/Button';
 import { FaDownload, FaGithub, FaLinkedin, FaEnvelope } from 'react-icons/fa';
 import profileImage from '../../assets/given.jpg'; 
 
 const Hero = () => {
-  // Defining my animation settings here for clean, reusable code
+  const navigate = useNavigate();
   const fadeInUp = {
     hidden: { opacity: 0, y: 30 },
     visible: { opacity: 1, y: 0 }
@@ -59,7 +60,13 @@ const Hero = () => {
           transition={{ duration: 0.6 }}
           className="flex flex-wrap justify-center lg:justify-start items-center gap-4 mt-4"
         >
-          <Button variant="primary">Hire Me</Button>
+        <Button 
+              variant="primary" 
+              onClick={() => navigate('/hire')}
+            >
+              Hire Me
+        </Button>
+
           <Button variant="outline" className="flex items-center gap-2">
             My CV <FaDownload className="text-sm" />
           </Button>
